@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ContextIQ</title>
+
+    <link rel="stylesheet" href="popup.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- Header -->
+
+        <header class="header">
+
+            <div class="logo">
+
+                <div class="logo-icon">
+                    🧠
+                </div>
+
+                <div>
+
+                    <h1>ContextIQ</h1>
+
+                    <p>AI Web Intelligence</p>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- Status Card -->
+
+        <section class="status-card">
+
+            <div class="status-top">
+
+                <span class="status-title">
+                    🌐 Current Website
+                </span>
+
+                <span class="status-badge">
+                    Ready
+                </span>
+
+            </div>
+
+            <div class="website-name" id="websiteName">
+
+                Detecting website...
+
+            </div>
+
+            <div class="website-description">
+
+                Ask questions about the page using Retrieval-Augmented Generation.
+
+            </div>
+
+        </section>
+
+        <!-- Input -->
+
+        <section class="input-section">
+
+            <label>
+
+                Ask ContextIQ
+
+            </label>
+
+            <textarea
+                id="userQuery"
+                placeholder="Ask anything about this webpage..."
+            ></textarea>
+
+            <button id="askBtn">
+
+                <span class="sparkle">
+                    ✨
+                </span>
+
+                <span>
+
+                    Ask AI
+
+                </span>
+
+            </button>
+
+        </section>
+
+        <!-- Response -->
+
+        <section class="response-section">
+
+            <div class="response-header">
+
+                <span>
+
+                    💬 Conversation
+
+                </span>
+
+                <button
+                    class="copy-btn"
+                    id="copyBtn"
+                >
+
+                    📋 Copy
+
+                </button>
+
+            </div>
+
+            <div id="responseBox">
+
+    <div id="chatContainer">
+
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+
+                        🧠
+
+                    </div>
+
+                    <h3>
+
+                        Ready to Analyze
+
+                    </h3>
+
+                    <p>
+
+                        Ask a question about the current webpage and ContextIQ will retrieve relevant information before generating an answer.
+
+                    </p>
+
+                </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Footer -->
+
+        <footer class="footer">
+
+            <div class="footer-item">
+
+                <span class="dot online"></span>
+
+                Backend Connected
+
+            </div>
+
+            <div class="footer-item">
+
+                🧠 Llama 3.3
+
+            </div>
+
+        </footer>
+
+    </div>
+    <script src="pdfjs/pdf.js"></script>
+<script src="popup.js"></script>
+
+</body>
+
+</html>
