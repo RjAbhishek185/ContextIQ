@@ -193,7 +193,7 @@ if (isPDF) {
 }
 
                         const response = await fetch(
-                            "http://127.0.0.1:8000/chat",
+                            "https://contextiq-h2nr.onrender.com/chat",
                             {
 
                                 method: "POST",
