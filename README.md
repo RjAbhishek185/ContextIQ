@@ -21,7 +21,7 @@ The extension extracts webpage content, creates semantic embeddings, stores them
 
 ## ✨ Features
 
-- 🌐 Ask questions about supported webpage
+- 🌐 Ask questions about supported webpages
 - 📌 Chrome Side Panel interface
 - 🕘 Persistent question history
 - 📄 PDF question answering *(under development)*
