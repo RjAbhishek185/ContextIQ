@@ -19,3 +19,5 @@ sentence-transformers
 
 # Groq
 groq
+
+ddgs
