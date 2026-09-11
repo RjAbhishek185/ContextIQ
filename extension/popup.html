@@ -9,14 +9,19 @@
 
     <link rel="stylesheet" href="popup.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 </head>
 
 <body>
 
     <div class="app">
 
-        <!-- Header -->
+        <!-- =========================
+             Header
+             ========================= -->
 
         <header class="header">
 
@@ -27,18 +32,18 @@
                 </div>
 
                 <div>
-
                     <h1>ContextIQ</h1>
-
                     <p>AI Web Intelligence</p>
-
                 </div>
 
             </div>
 
         </header>
 
-        <!-- Status Card -->
+
+        <!-- =========================
+             Status Card
+             ========================= -->
 
         <section class="status-card">
 
@@ -54,10 +59,11 @@
 
             </div>
 
-            <div class="website-name" id="websiteName">
-
+            <div
+                class="website-name"
+                id="websiteName"
+            >
                 Detecting website...
-
             </div>
 
             <div class="website-description">
@@ -68,14 +74,15 @@
 
         </section>
 
-        <!-- Input -->
+
+        <!-- =========================
+             Input
+             ========================= -->
 
         <section class="input-section">
 
-            <label>
-
+            <label for="userQuery">
                 Ask ContextIQ
-
             </label>
 
             <textarea
@@ -90,64 +97,55 @@
                 </span>
 
                 <span>
-
                     Ask AI
-
                 </span>
 
             </button>
 
         </section>
 
-        <!-- Response -->
+
+        <!-- =========================
+             Conversation
+             ========================= -->
 
         <section class="response-section">
 
             <div class="response-header">
 
                 <span>
-
                     💬 Conversation
-
                 </span>
 
                 <button
                     class="copy-btn"
                     id="copyBtn"
                 >
-
                     📋 Copy
-
                 </button>
 
             </div>
 
+
             <div id="responseBox">
 
-    <div id="chatContainer">
+                <div id="chatContainer">
 
+                    <div class="empty-state">
 
-                <div class="empty-state">
+                        <div class="empty-icon">
+                            🧠
+                        </div>
 
-                    <div class="empty-icon">
+                        <h3>
+                            Ready to Analyze
+                        </h3>
 
-                        🧠
+                        <p>
+                            Ask a question about the current webpage and ContextIQ will retrieve relevant information before generating an answer.
+                        </p>
 
                     </div>
-
-                    <h3>
-
-                        Ready to Analyze
-
-                    </h3>
-
-                    <p>
-
-                        Ask a question about the current webpage and ContextIQ will retrieve relevant information before generating an answer.
-
-                    </p>
-
-                </div>
 
                 </div>
 
@@ -155,7 +153,40 @@
 
         </section>
 
-        <!-- Footer -->
+
+        <!-- =========================
+             Question History
+             ========================= -->
+
+        <section class="history-section">
+
+            <div class="history-header">
+
+                <span>
+                    🕘 Question History
+                </span>
+
+                <button id="clearHistoryBtn">
+                    Clear
+                </button>
+
+            </div>
+
+
+            <div id="historyList">
+
+                <div class="history-empty">
+                    No previous questions yet.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             Footer
+             ========================= -->
 
         <footer class="footer">
 
@@ -169,15 +200,20 @@
 
             <div class="footer-item">
 
-                🧠 Llama 3.3
+                🧠 GROQ GPT-OSS 120B
 
             </div>
 
         </footer>
 
     </div>
+
+
+    <!-- Scripts -->
+
     <script src="pdfjs/pdf.js"></script>
-<script src="popup.js"></script>
+
+    <script src="popup.js"></script>
 
 </body>
 

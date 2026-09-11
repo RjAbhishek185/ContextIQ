@@ -1,7 +1,141 @@
+// =========================
+// Question History
+// =========================
+
+const HISTORY_KEY = "contextiq_question_history";
+const MAX_HISTORY_ITEMS = 10;
+
+function saveQuestionHistory(question, answer) {
+    let history = JSON.parse(
+        localStorage.getItem(HISTORY_KEY) || "[]"
+    );
+
+    history.unshift({
+        question: question,
+        answer: answer
+    });
+
+    history = history.slice(0, MAX_HISTORY_ITEMS);
+
+    localStorage.setItem(
+        HISTORY_KEY,
+        JSON.stringify(history)
+    );
+
+    loadQuestionHistory();
+}
+
+function loadQuestionHistory() {
+    const historyList = document.getElementById("historyList");
+
+    if (!historyList) return;
+
+    const history = JSON.parse(
+        localStorage.getItem(HISTORY_KEY) || "[]"
+    );
+
+    if (history.length === 0) {
+        historyList.innerHTML = `
+            <div class="history-empty">
+                No previous questions yet.
+            </div>
+        `;
+        return;
+    }
+
+    historyList.innerHTML = "";
+
+    history.forEach((item) => {
+        const historyItem = document.createElement("div");
+
+        historyItem.className = "history-item";
+        historyItem.textContent = item.question;
+
+        historyItem.addEventListener("click", () => {
+            showHistoryConversation(
+                item.question,
+                item.answer
+            );
+        });
+
+        historyList.appendChild(historyItem);
+    });
+}
+function showHistoryConversation(question, answer) {
+    const chat = document.getElementById("chatContainer");
+
+    if (!chat) return;
+
+    chat.innerHTML = "";
+
+    // User question
+    const userMessage = document.createElement("div");
+
+    userMessage.className = "user-message chat-animation";
+
+    userMessage.innerHTML = `
+        <div>
+
+            <div class="message-label">
+                👤 You
+            </div>
+
+            <div class="user-bubble">
+                ${question}
+            </div>
+
+        </div>
+    `;
+
+    chat.appendChild(userMessage);
+
+
+    // Previous AI answer
+    const aiMessage = document.createElement("div");
+
+    aiMessage.className = "ai-message chat-animation";
+
+    aiMessage.innerHTML = `
+        <div>
+
+            <div class="message-label">
+                🤖 ContextIQ
+            </div>
+
+            <div class="ai-bubble">
+
+                <div class="response-text"></div>
+
+            </div>
+
+        </div>
+    `;
+
+    chat.appendChild(aiMessage);
+
+    const responseText =
+        aiMessage.querySelector(".response-text");
+
+    responseText.textContent = answer;
+}
+
+function clearQuestionHistory() {
+    localStorage.removeItem(HISTORY_KEY);
+    loadQuestionHistory();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+
 /* pdfjsLib.GlobalWorkerOptions.workerSrc =
     chrome.runtime.getURL("pdfjs/pdf.worker.js"); */
+
     updateWebsiteName();
+    loadQuestionHistory();
+
+    document.getElementById("clearHistoryBtn").addEventListener(
+        "click",
+        clearQuestionHistory
+    );
 
     document.getElementById("askBtn").addEventListener("click", askQuestion);
 
@@ -102,6 +236,8 @@ const responseBox = document.getElementById("responseBox");
 const chat = document.getElementById("chatContainer");
 
 if (!query) return;
+
+
 
 // Remove empty state BEFORE adding the question
 if (chat.querySelector(".empty-state")) {
@@ -244,6 +380,7 @@ if (isPDF) {
                         }
 
                         const data = await response.json();
+                        saveQuestionHistory(query, data.answer);
 
 const typingIndicator = document.getElementById("typingIndicator");
 
