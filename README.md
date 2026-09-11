@@ -2,7 +2,6 @@
 
 >  An AI-powered Chrome Extension that enables users to ask questions about webpage content using Retrieval-Augmented Generation (RAG), with PDF question answering currently under development.
 
-![License](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?logo=fastapi)
 ![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-4285F4?logo=googlechrome)
@@ -22,7 +21,9 @@ The extension extracts webpage content, creates semantic embeddings, stores them
 
 ## ✨ Features
 
-- 🌐 Ask questions about any webpage
+- 🌐 Ask questions about supported webpage
+- 📌 Chrome Side Panel interface
+- 🕘 Persistent question history
 - 📄 PDF question answering *(under development)*
 - 🧠 Retrieval-Augmented Generation (RAG)
 - ⚡ Fast semantic search using FAISS
@@ -40,7 +41,7 @@ The extension extracts webpage content, creates semantic embeddings, stores them
 
 ```
                 ┌──────────────────────┐
-                │  Chrome Extension    │
+                │  Chrome Side Panel   │
                 └──────────┬───────────┘
                            │
                            ▼
@@ -50,19 +51,25 @@ The extension extracts webpage content, creates semantic embeddings, stores them
                 Text Chunking (LangChain)
                            │
                            ▼
-              HuggingFace Embeddings
+                HuggingFace Embeddings
                            │
                            ▼
-                 FAISS Vector Database
+                  FAISS Vector Store
                            │
                            ▼
                 Relevant Context Search
                            │
                            ▼
-                  Groq GPT-OSS 120B Model
+                   GROQ GPT-OSS 120B
                            │
+                ┌──────────┴──────────┐
+                │                     │
+          Context Answer       Web Search Fallback
+                │                     │
+                └──────────┬──────────┘
                            ▼
                   AI Generated Response
+
 ```
 
 ---
@@ -114,6 +121,7 @@ ContextIQ
 │   ├── popup.html
 │   ├── popup.css
 │   ├── popup.js
+│   ├── background.js
 │   ├── content.js
 │   ├── researchMode.js
 │   ├── icon.jpg
@@ -234,8 +242,7 @@ ContextIQ retrieves relevant webpage content using semantic search and uses the 
 - [ ] Multi-document chat
 - [ ] Research Mode
 - [ ] Citation support
-- [ ] Streaming AI responses
-- [ ] Conversation history
+- [ ] Improve streaming response experience
 - [ ] Dark / Light themes
 - [ ] Chrome Web Store release
 - [ ] Backend deployment optimization
@@ -267,11 +274,6 @@ Contributions are welcome.
 
 ---
 
-## 📄 License
-
-This project is licensed under the MIT License.
-
----
 
 ## 👨‍💻 Author
 
