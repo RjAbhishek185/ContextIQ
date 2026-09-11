@@ -90,6 +90,13 @@ class RAGrequest(BaseModel):
 @app.post("/chat")
 def get_answer(payload: RAGrequest):
     try:
+        if not payload.query.strip():
+            return JSONResponse(
+                status_code=400,
+                content={
+                    "answer": "Please enter a question."
+                }
+            )
 
         if payload.session_id not in session_db:
             session_db[payload.session_id] = deque(maxlen=MAX_HISTORY)

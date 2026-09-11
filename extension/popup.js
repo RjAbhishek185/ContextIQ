@@ -226,8 +226,9 @@ if (isPDF) {
 
                         if (!response.ok) {
 
-                            throw new Error(
-                                `Server returned ${response.status}`
+                           const errorData = await response.json();
+                           throw new Error(
+                            errorData.answer || `Server returned ${response.status}`
                             );
 
                         }
