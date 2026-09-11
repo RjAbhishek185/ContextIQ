@@ -140,8 +140,9 @@ cd backend
 
 python -m venv venv
 
-# Windows
-venv\Scripts\activate
+# Windows PowerShell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\venv\Scripts\Activate.ps1
 
 # macOS/Linux
 source venv/bin/activate
