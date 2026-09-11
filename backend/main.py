@@ -2,6 +2,7 @@ from importlib import resources
 import socket
 import fitz
 import requests
+import hashlib
 # Force IPv4 to bypass macOS broken IPv6 resolution (fixes 75-second delay)
 orig_getaddrinfo = socket.getaddrinfo
 def getaddrinfo_ipv4(*args, **kwargs):
@@ -102,8 +103,11 @@ def get_answer(payload: RAGrequest):
         # Limit very large webpages
         page_text = payload.text[:MAX_CHARS]
 
-        # Build vectorstore only once per browser tab
-        if payload.session_id not in vectorstore_cache:
+        content_hash = hashlib.md5(page_text.encode("utf-8")).hexdigest()
+        cache_key = f"{payload.session_id}:{content_hash}"
+
+        # Build vectorstore only once per unique webpage in a browser tab
+        if cache_key not in vectorstore_cache:
 
             splitter = RecursiveCharacterTextSplitter(
                 chunk_size=1000,
@@ -117,12 +121,12 @@ def get_answer(payload: RAGrequest):
                 for chunk in chunks
             ]
 
-            vectorstore_cache[payload.session_id] = FAISS.from_documents(
+            vectorstore_cache[cache_key] = FAISS.from_documents(
                 documents=docs,
                 embedding=emb_model
             )
 
-        vectorstore = vectorstore_cache[payload.session_id]
+        vectorstore = vectorstore_cache[cache_key]
 
         retriever = vectorstore.as_retriever(
             search_type="mmr",
