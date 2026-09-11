@@ -209,14 +209,21 @@ chrome://extensions
 
 ---
 
-## 📸 Screenshots
+## 📸 Demo
 
-Screenshots demonstrating the current Chrome Extension and webpage question-answering workflow can be added here.
+### 1. Ask Questions About Any Webpage
 
-- Chat Interface
-- Webpage Question Answering
-- Extension Interface
-- PDF Support *(under development)*
+ContextIQ detects the current website and allows users to ask natural-language questions about its content.
+
+![ContextIQ Question Interface](screenshots/contextiq-question.png)
+
+### 2. Context-Aware AI Answer with Retrieved Sources
+
+ContextIQ retrieves relevant webpage content using semantic search and uses the retrieved context to generate an answer.
+
+![ContextIQ Answer and Retrieved Context](screenshots/contextiq-answer.png)
+
+> **PDF Support:** PDF question answering is currently under development and is planned as a future extension of the existing RAG pipeline.
 
 ---
 
