@@ -1,6 +1,6 @@
 # 🚀 ContextIQ
 
-> An AI-powered Chrome Extension that enables users to ask questions about any webpage or PDF using Retrieval-Augmented Generation (RAG) and Large Language Models.
+>  An AI-powered Chrome Extension that enables users to ask questions about webpage content using Retrieval-Augmented Generation (RAG), with PDF question answering currently under development.
 
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python)
@@ -12,24 +12,25 @@
 
 ## 📌 Overview
 
-ContextIQ is an intelligent Chrome Extension that transforms webpages and PDF documents into an interactive AI knowledge assistant.
+ContextIQ is an intelligent Chrome Extension that transforms webpage content into an interactive AI knowledge assistant, with PDF question answering currently under development.
 
 Instead of manually searching through lengthy content, users can simply ask questions in natural language and receive context-aware answers powered by Retrieval-Augmented Generation (RAG).
 
-The extension extracts webpage or PDF content, creates semantic embeddings, stores them in a FAISS vector database, retrieves the most relevant information, and generates accurate responses using Groq's Llama models.
+The extension extracts webpage content, creates semantic embeddings, stores them in a FAISS vector database, retrieves the most relevant information, and generates context-aware responses using Groq's GPT-OSS 120B model.
 
 ---
 
 ## ✨ Features
 
 - 🌐 Ask questions about any webpage
-- 📄 AI-powered PDF document understanding
+- 📄 PDF question answering *(under development)*
 - 🧠 Retrieval-Augmented Generation (RAG)
 - ⚡ Fast semantic search using FAISS
-- 🤖 Powered by Groq Llama 3.3
+- 🤖 Powered by Groq GPT-OSS 120B
 - 🔍 Context-aware responses
 - 💬 Conversational chat interface
 - 📚 Session-based memory
+- 🔎 Web search support using DuckDuckGo
 - 🚀 FastAPI backend
 - 🧩 Chrome Extension (Manifest V3)
 
@@ -43,7 +44,7 @@ The extension extracts webpage or PDF content, creates semantic embeddings, stor
                 └──────────┬───────────┘
                            │
                            ▼
-               Extract Webpage / PDF
+               Extract Webpage Content
                            │
                            ▼
                 Text Chunking (LangChain)
@@ -58,7 +59,7 @@ The extension extracts webpage or PDF content, creates semantic embeddings, stor
                 Relevant Context Search
                            │
                            ▼
-                 Groq Llama 3.3 Model
+                  Groq GPT-OSS 120B Model
                            │
                            ▼
                   AI Generated Response
@@ -85,10 +86,11 @@ The extension extracts webpage or PDF content, creates semantic embeddings, stor
 
 - LangChain
 - Groq API
-- Llama 3.3
+- GPT-OSS 120B
 - HuggingFace Embeddings
 - Sentence Transformers
 - FAISS Vector Store
+- DuckDuckGo Search
 
 ### PDF Processing
 
@@ -155,6 +157,8 @@ Create a `.env` file:
 ```env
 GROQ_API_KEY=your_api_key_here
 ```
+> **Security:** Never commit your `.env` file or expose your API key publicly. The `.env` file is included in `.gitignore`.
+
 
 Run the backend:
 
@@ -166,6 +170,12 @@ Backend runs on:
 
 ```
 http://127.0.0.1:8000
+```
+
+FastAPI interactive documentation:
+
+```
+http://127.0.0.1:8000/docs
 ```
 
 ---
@@ -186,30 +196,34 @@ chrome://extensions
 
 ## 🚀 How It Works
 
-1. User opens any webpage or PDF.
-2. Chrome Extension extracts content.
+1. User opens a webpage.
+2. The Chrome Extension extracts the available webpage content.
 3. Content is sent to the FastAPI backend.
-4. LangChain splits text into chunks.
-5. HuggingFace generates embeddings.
-6. FAISS retrieves relevant context.
-7. Groq Llama 3.3 generates an answer.
-8. Response is displayed inside the extension.
+4. LangChain splits the content into chunks.
+5. HuggingFace generates semantic embeddings.
+6. FAISS retrieves the most relevant context.
+7. Groq GPT-OSS 120B generates a context-aware answer.
+8. The response is displayed inside the extension.
+
+> **PDF Support:** PDF question answering is currently under development. The project includes PDF processing components, and PDF extraction, retrieval, and question-answering support are being actively improved.
 
 ---
 
 ## 📸 Screenshots
 
-> Add screenshots here after deployment.
+Screenshots demonstrating the current Chrome Extension and webpage question-answering workflow can be added here.
 
-- Homepage
 - Chat Interface
-- PDF Question Answering
 - Webpage Question Answering
+- Extension Interface
+- PDF Support *(under development)*
 
 ---
 
 ## 🔮 Roadmap
 
+- [ ] Complete PDF question answering
+- [ ] Improve PDF text extraction and processing
 - [ ] Multi-document chat
 - [ ] Research Mode
 - [ ] Citation support
@@ -225,7 +239,7 @@ chrome://extensions
 
 ## 🎯 Future Improvements
 
-- GPT-4 / Claude support
+- Support for additional LLM providers
 - Image understanding
 - Local embedding models
 - Hybrid semantic search
