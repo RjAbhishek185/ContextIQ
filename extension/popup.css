@@ -1017,35 +1017,34 @@ button:active{
 
 }
 
-.user-bubble{
+.user-bubble {
+    width: 100%;
+    max-width: 100%;
+    display: block;
+    box-sizing: border-box;
 
-    max-width:92%;
+    padding: 18px 20px;
 
-    padding:14px 18px;
+    border-radius: 16px;
 
-    border-radius:20px 20px 6px 20px;
-
-    background:linear-gradient(
+    background: linear-gradient(
         135deg,
         #6366F1,
         #8B5CF6
     );
 
-    color:#ffffff;
+    color: #ffffff;
 
-    font-size:14px;
+    font-size: 15px;
 
-    line-height:1.7;
+    line-height: 1.6;
 
-    white-space:pre-wrap;
-
-    word-break:break-word;
-
-    overflow-wrap:anywhere;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: normal;
 
     box-shadow:
         0 10px 24px rgba(99,102,241,.25);
-
 }
 
 /* ==========================

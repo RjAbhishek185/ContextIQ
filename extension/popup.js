@@ -43,7 +43,7 @@ function updateWebsiteName() {
     chrome.tabs.query(
         {
             active: true,
-            currentWindow: true
+            lastFocusedWindow: true
         },
         (tabs) => {
 
@@ -95,23 +95,25 @@ async function askQuestion() {
 
     const query = queryInput.value.trim();
 
-    const askBtn = document.getElementById("askBtn");
+const askBtn = document.getElementById("askBtn");
 
-    const responseBox = document.getElementById("responseBox");
+const responseBox = document.getElementById("responseBox");
 
-    if (!query) return;
-
-addUserMessage(query);
-
-
-    askBtn.disabled = true;
-
-    askBtn.innerHTML = `<span class="loading"></span>Generating...`;
 const chat = document.getElementById("chatContainer");
 
+if (!query) return;
+
+// Remove empty state BEFORE adding the question
 if (chat.querySelector(".empty-state")) {
     chat.innerHTML = "";
 }
+
+// Add user's question
+addUserMessage(query);
+
+askBtn.disabled = true;
+
+askBtn.innerHTML = `<span class="loading"></span>Generating...`;
 
 const typing = document.createElement("div");
 
@@ -142,11 +144,19 @@ chat.scrollTop = chat.scrollHeight;
     chrome.tabs.query(
     {
         active: true,
-        currentWindow: true
+        lastFocusedWindow: true
     },
     function (tabs) {
 
         const currentTab = tabs[0];
+        if (!currentTab || !currentTab.url) {
+    responseBox.innerHTML = `
+        <div class="ai-message">
+            Unable to access the current webpage.
+        </div>
+    `;
+    return;
+}
 
         const isPDF =
             currentTab.url.toLowerCase().includes(".pdf");
@@ -300,8 +310,7 @@ if (data.sources && data.sources.length > 0) {
     queryInput.value = "";
 
     queryInput.focus();
-    document.getElementById("chatContainer").scrollTop =
-    document.getElementById("chatContainer").scrollHeight;
+   
 
 }
 
@@ -363,11 +372,11 @@ function streamText(text, container) {
 
     chat.appendChild(aiMessage);
 
-    // Scroll immediately to the new message
+    /* // Scroll immediately to the new message
     aiMessage.scrollIntoView({
         behavior: "smooth",
         block: "end"
-    });
+    }); */
 
     const textHolder = aiMessage.querySelector(".response-text");
 
