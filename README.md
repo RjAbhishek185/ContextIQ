@@ -153,6 +153,7 @@ python -m venv venv
 # Windows PowerShell
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\venv\Scripts\Activate.ps1
+(.\venv\Scripts\python.exe -m uvicorn main:app --host 127.0.0.1 --port 8000)
 
 # macOS/Linux
 source venv/bin/activate
